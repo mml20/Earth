@@ -19,8 +19,6 @@ var material = new THREE.MeshLambertMaterial( {map: texture} );
 var earth = new THREE.Mesh(geometry, material);
 scene.add(earth);
 
-var axisHelper = new THREE.AxisHelper( 5 );
-scene.add( axisHelper );
 
 var geometry2 = new THREE.SphereGeometry( 0.1, 32, 32 );
 var texture2 = new THREE.TextureLoader().load('/img/texture_moon.jpg');
