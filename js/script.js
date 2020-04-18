@@ -4,7 +4,6 @@ var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHe
 camera.position.z = 5;
 camera.position.x = 0;
 camera.position.y = 0;
-camera.rotation.z = 0;
 
 
 var renderer = new THREE.WebGLRenderer({antialisias: true});
@@ -20,16 +19,30 @@ var material = new THREE.MeshLambertMaterial( {map: texture} );
 var earth = new THREE.Mesh(geometry, material);
 scene.add(earth);
 
+var axisHelper = new THREE.AxisHelper( 5 );
+scene.add( axisHelper );
+
+var geometry2 = new THREE.SphereGeometry( 0.1, 32, 32 );
+var texture2 = new THREE.TextureLoader().load('/img/texture_moon.jpg');
+var material2 = new THREE.MeshLambertMaterial( {map: texture2} );
+var moon = new THREE.Mesh(geometry2, material2);
+scene.add(moon);
+moon.position.y = 0;
+moon.position.z = 0;
+
 var light = new THREE.PointLight('#ffff4a', 3);
 light.position.x = 6;
 light.position.y = 3;
 light.position.z = 0;
 light.receiveShadow = true;
 scene.add(light);
-
+var i = 0;
 var render = function(){
     requestAnimationFrame(render);
-    cube.rotation.y += 0.001;
+    earth.rotation.y += 0.001;
+    moon.position.x = 2* Math.cos((i*(Math.PI/180)));
+    moon.position.z = 2* Math.sin((i*(Math.PI/180)));
+    i ++;
     renderer.render(scene, camera);
 }
 render();
