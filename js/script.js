@@ -5,9 +5,6 @@ camera.position.z = 5;
 camera.position.x = 0;
 camera.position.y = 0;
 
-var axisHelper = new THREE.AxisHelper( 5 );
-scene.add( axisHelper );
-
 var renderer = new THREE.WebGLRenderer({antialisias: true});
 renderer.setSize( window.innerWidth, window.innerHeight);
 document.body.appendChild( renderer.domElement);
@@ -16,7 +13,7 @@ window.addEventListener('resize', ()=>{
     camera.aspect = window.innerWidth / window.innerHeight;
 });
 var geometry = new THREE.SphereGeometry( 1, 32, 32 );
-var texture = new THREE.TextureLoader().load('/img/texture.jpg');
+var texture = new THREE.TextureLoader().load('https://mml20.github.io/Earth/img/texture.jpg');
 var material = new THREE.MeshLambertMaterial( {map: texture} );
 var earth = new THREE.Mesh(geometry, material);
 earth.receiveShadow = true;
@@ -24,7 +21,7 @@ earth.castShadow = true;
 scene.add(earth);
 
 var loader = new THREE.TextureLoader();
-var texture = loader.load( '/img/texture_sky.jpg' );
+var texture = loader.load( 'https://mml20.github.io/Earth/img/texture_sky.jpg' );
 var backgroundMesh = new THREE.Mesh(new THREE.PlaneGeometry(5, 5, 0), new THREE.MeshBasicMaterial({map: texture}));
 //scene.add(backgroundMesh);
 
